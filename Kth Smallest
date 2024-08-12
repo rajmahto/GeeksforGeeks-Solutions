@@ -6,7 +6,7 @@ public:
     // Function to find the kth smallest element in the array
     int kthSmallest(int arr[], int l, int r, int k) {
         // Use nth_element to place the k-th smallest element in its correct position
-        sort(arr + l, arr + l + k - 1, arr + r + 1);
+         sort(arr + l, arr + r + 1);
         // Return the k-th smallest element
         return arr[l + k - 1];
     }
