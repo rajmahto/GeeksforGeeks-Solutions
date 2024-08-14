@@ -1,0 +1,41 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+class Solution {
+public:
+    int getMinDiff(int arr[], int n, int k) {
+        // If there is only one tower, the difference is zero
+        if (n == 1)
+            return 0;
+        
+        // Sort the array
+        std::sort(arr, arr + n);
+        
+        // Initialize result
+        int ans = arr[n - 1] - arr[0];
+        
+        // Handle the corner elements
+        int smallest = arr[0] + k;
+        int largest = arr[n - 1] - k;
+        
+        // Traverse the sorted array and consider all elements to adjust the range
+        for (int i = 0; i < n - 1; i++) {
+            int min_elem = std::min(smallest, arr[i + 1] - k);
+            int max_elem = std::max(largest, arr[i] + k);
+            if (min_elem < 0) continue; // Skip if the height becomes negative
+            ans = std::min(ans, max_elem - min_elem);
+        }
+        
+        return ans;
+    }
+};
+
+int main() {
+    Solution sol;
+    int arr[] = {1, 5, 8, 10};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int k = 2;
+    std::cout << sol.getMinDiff(arr, n, k) << std::endl;
+    return 0;
+}
