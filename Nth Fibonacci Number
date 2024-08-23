@@ -1,0 +1,13 @@
+int nthFibonacci(int n){
+        // code here
+        if(n==1 || n == 2) return 1;
+        long long first = 1;
+        long long second = 1;
+        long long next = 0;
+        for(int i = 3; i <= n; i++){
+            next = (first+second) % 1000000007;
+            first = second;
+            second = next;
+        }
+        return next;
+    }
