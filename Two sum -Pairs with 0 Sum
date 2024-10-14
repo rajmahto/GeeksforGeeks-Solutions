@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    vector<vector<int>> getPairs(vector<int>& arr) {
+        // code here
+       unordered_set<int> seen; 
+       set<vector<int>> uniquePairs;
+        for (int num : arr) {
+        int complement = -num; 
+        
+     
+        if (seen.find(complement) != seen.end()) {
+            vector<int> pair = {min(num, complement), max(num, complement)}; 
+            uniquePairs.insert(pair);
+        }
+        
+        seen.insert(num);
+    }
+        vector<vector<int>> result;
+    for (const auto& p : uniquePairs) {
+        result.push_back(p);
+    }
+
+        return result;
+    }
+};
